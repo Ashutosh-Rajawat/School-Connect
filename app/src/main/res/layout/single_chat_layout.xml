@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/light_pink">
+
+    //item chat left
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_chat_left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp">
+
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/imgProfile_left"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/messageContainer_left" />
+
+        <!-- Message Bubble -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/messageContainer_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chat_left"
+            android:padding="10dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_40sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgProfile_left"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Message Text -->
+            <TextView
+                android:id="@+id/txtMessage_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Hello, good morning too Andrew morning too Andrew "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Time -->
+            <TextView
+                android:id="@+id/txtTime_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Just Now"
+                android:textColor="#888888"
+                android:textSize="10sp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imgTick_left" />
+
+            <!-- Tick -->
+            <ImageView
+                android:id="@+id/imgTick_left"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/ic_tick"
+                app:layout_constraintTop_toBottomOf="@+id/txtMessage"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    //item chat right
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_chat_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp">
+
+        <!-- Message Bubble -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/messageContainer_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chat_right"
+            android:padding="10dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_40sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgProfile_right"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Message Text -->
+            <TextView
+                android:id="@+id/txtMessage_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="It seems we have a lot in common &amp; have a lot of interest in each other"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Time -->
+            <TextView
+                android:id="@+id/txtTime_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Just Now"
+                android:textColor="#888888"
+                android:textSize="10sp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imgTick_right" />
+
+            <!-- Tick -->
+            <ImageView
+                android:id="@+id/imgTick_right"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/ic_tick"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/imgProfile_right"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/messageContainer_right" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

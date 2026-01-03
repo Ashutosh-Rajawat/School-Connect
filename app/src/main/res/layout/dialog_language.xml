@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rbEnglish"
+            style="@style/FigmaRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:checked="true"
+            android:text="English"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rbHindi"
+            style="@style/FigmaRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="Hindi"/>
+    </RadioGroup>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDone"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/light_green"
+        android:text="Done"
+        android:textColor="@color/green"
+        app:cornerRadius="24dp"
+        app:strokeColor="@color/green"
+        app:strokeWidth="@dimen/_1sdp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

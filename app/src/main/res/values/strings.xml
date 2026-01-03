@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SchoolConnect</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="post_str"><![CDATA[
+<b>Aadhyaray__22</b>  Celebrating the festival Raksha Bandha as the bond of love and protection between the brothers and sisters.
+]]></string>
+    <string name="mail">mail</string>
+    <string name="call">call</string>
+    <string name="whatsapp">whatsapp</string>
+</resources>
