@@ -1,0 +1,20 @@
+<!-- res/layout/item_week_day.xml -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_34sdp"
+    android:layout_height="@dimen/_34sdp"
+    android:layout_marginEnd="@dimen/_5sdp"
+    android:layout_marginVertical="@dimen/_5sdp">
+
+    <TextView
+        android:id="@+id/tvWeekDay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Mo"
+
+        android:textColor="#1E8E8E"
+        android:textSize="@dimen/_11ssp"
+        android:textStyle="bold" />
+
+</com.google.android.material.card.MaterialCardView>
+

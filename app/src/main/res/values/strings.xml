@@ -8,4 +8,7 @@
     <string name="mail">mail</string>
     <string name="call">call</string>
     <string name="whatsapp">whatsapp</string>
+    <string name="notice_image">notice image</string>
+    <string name="_20_min_ago">20 min ago</string>
+    <string name="it_seems_we_have_a_lot_in_common_amp_have_a_lot_of_interest_in_each_other"><![CDATA[It seems we have a lot in common & have a lot of interest in each other]]></string>
 </resources>
