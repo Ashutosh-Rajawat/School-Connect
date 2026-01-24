@@ -45,10 +45,6 @@ interface ApiResponseListener {
                         onMembershipExpired(apiResponse.error.message)
                     }
 
-                    is SevenRoomException -> {
-                        sevenRoomException(apiResponse.error.message)
-                    }
-
                     else -> {
                         onOtherFailure(apiResponse.error?.message)
                     }
@@ -67,6 +63,4 @@ interface ApiResponseListener {
     fun onOtherFailure(message: String?)
     fun onTokenExpire(message: String?, shouldLogout : Boolean = false)
     fun onMembershipExpired(message: String?)
-    fun sevenRoomException(message: String?)
-
 }

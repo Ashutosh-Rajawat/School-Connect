@@ -6,26 +6,78 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.atr.schoolconnect.data.controller.ApiResponse
+import com.atr.schoolconnect.data.controller.Status
 import com.atr.schoolconnect.data.repositories.AuthRepo
+import com.google.gson.Gson
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
+import okhttp3.Dispatcher
 
-class AuthViewModel(application: Application) : AndroidViewModel(application)  {
+class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repo: AuthRepo = AuthRepo(application)
-    private val _responseLiveData = MutableLiveData<ApiResponse>()
-    val responseLiveData: LiveData<ApiResponse> get() = _responseLiveData
+    private val repo = AuthRepo(application)
 
+    private val _responseState = MutableStateFlow<ApiResponse?>(null)
+    val responseState: StateFlow<ApiResponse?> = _responseState
 
-    fun login(params: JsonObject, type: String) {
-        // Launch coroutine in ViewModel scope
+    fun login(params: JsonObject) {
         viewModelScope.launch {
-            _responseLiveData.value = ApiResponse.loading() // Set loading state
+            _responseState.value = ApiResponse.loading()
             try {
-//                val response = repo.login(params, type) // Suspend function call
-//                _responseLiveData.value = response // Update LiveData with success
+                val response = repo.login(params)
+                _responseState.value = response
             } catch (e: Exception) {
-                _responseLiveData.value = ApiResponse.error(e, 500, type) // Update LiveData with error
+                _responseState.value = ApiResponse.error(e, 500)
+            }
+        }
+    }
+
+    /* ---------------- BANNERS (one time) ---------------- */
+
+    fun loadBanners() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _responseState.value = ApiResponse.loading()
+
+            try {
+                val response = repo.getBanners()
+
+                val json = JsonObject().apply {
+                    addProperty("apiType", "banners")                // api name
+                    add("response", Gson().toJsonTree(response)) // FULL response
+                }
+
+
+                _responseState.value = ApiResponse.success(json)
+
+            } catch (e: Exception) {
+                _responseState.value = ApiResponse.error(e, 500)
+            }
+        }
+    }
+
+    /* ---------------- POSTS (pagination) ---------------- */
+
+    fun loadPosts(page: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _responseState.value = ApiResponse.loading()
+
+            try {
+                val response = repo.getPosts(page)
+                val json = JsonObject().apply {
+                    addProperty("apiType", "posts")                // api name
+                    add("response", Gson().toJsonTree(response)) // FULL response
+                }
+                _responseState.value = ApiResponse.success(json)
+
+            } catch (e: Exception) {
+                _responseState.value = ApiResponse.error(e, 500)
             }
         }
     }

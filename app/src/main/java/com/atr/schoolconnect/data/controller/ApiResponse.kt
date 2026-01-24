@@ -24,7 +24,7 @@ data class ApiResponse(
             return ApiResponse(Status.LOADING)
         }
 
-        fun success(data: JsonElement, type: String): ApiResponse {
+        fun success(data: JsonElement): ApiResponse {
             if (data.isJsonNull) {
                 return ApiResponse(Status.ERROR, null, NullPointerException("Null response occurs"))
             }
@@ -64,7 +64,7 @@ data class ApiResponse(
             return ApiResponse(Status.SUCCESS, data, null)
         }
 
-        fun error(error: Throwable, statusCode: Int, type: String): ApiResponse {
+        fun error(error: Throwable, statusCode: Int): ApiResponse {
             return if (error is NoConnectivityException) {
                 ApiResponse(
                     Status.ERROR,

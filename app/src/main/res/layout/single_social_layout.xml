@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Kalpana Shrivastav"
+            android:text="Admin"
             android:textColor="#222222"
             android:textSize="16sp"
             android:textStyle="bold"

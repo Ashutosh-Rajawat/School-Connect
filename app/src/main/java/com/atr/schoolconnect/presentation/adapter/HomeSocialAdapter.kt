@@ -3,14 +3,22 @@ package com.atr.schoolconnect.presentation.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.atr.schoolconnect.R
 import com.atr.schoolconnect.databinding.SingleSocialLayoutBinding
+import com.atr.schoolconnect.domain.PostModel
+import com.atr.schoolconnect.domain.PostModelData
 
-class HomeSocialAdapter(private val context: Context) :
+class HomeSocialAdapter(private val context: Context, private var postList: MutableList<PostModelData>) :
     RecyclerView.Adapter<HomeSocialAdapter.ViewHolder>() {
+
+    fun submitList(list: List<PostModelData>) {
+        postList = list.toMutableList()
+        notifyDataSetChanged()
+    }
+
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -25,16 +33,13 @@ class HomeSocialAdapter(private val context: Context) :
         position: Int
     ) {
         holder.binding.tvCaption.text =
-            HtmlCompat.fromHtml(
-                context.getString(R.string.post_str),
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-            )
+            HtmlCompat.fromHtml(context.getString(R.string.post_str), HtmlCompat.FROM_HTML_MODE_LEGACY)
 
 
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return postList.size
     }
 
     override fun getItemViewType(position: Int): Int {

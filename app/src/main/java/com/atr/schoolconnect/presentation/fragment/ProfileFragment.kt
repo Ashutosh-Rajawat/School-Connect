@@ -19,18 +19,21 @@ import com.atr.schoolconnect.presentation.activity.FeePaymentActivity
 import com.atr.schoolconnect.presentation.activity.LoginActivity
 import com.atr.schoolconnect.presentation.activity.StudentProfileActivity
 import com.atr.schoolconnect.presentation.activity.SupportActivity
+import com.atr.schoolconnect.presentation.utilities.PreferenceConnector
 import com.bumptech.glide.Glide
 
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
+    lateinit var sharedPreferences: PreferenceConnector
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+        sharedPreferences = PreferenceConnector(requireContext())
 
         // Configure the profile menu rows (Language, Support, Student Profile, Fee Payment)
         val labels = listOf("Language", "Support", "Student Profile", "Fee Payment")
@@ -142,7 +145,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logoutUser() {
-
+        sharedPreferences.isLogin = false
         startActivity(Intent(requireActivity(), LoginActivity::class.java))
         requireActivity().finishAffinity()
 
