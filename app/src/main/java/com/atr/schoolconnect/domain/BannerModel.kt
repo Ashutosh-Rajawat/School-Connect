@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class BannerModel(
     @SerializedName("status") var status: Int? = null,
     @SerializedName("message") var message: String? = null,
-    @SerializedName("base_url") var baseUrl: String? = null,
     @SerializedName("data") var data: MutableList<BannerModelData> = mutableListOf()
 )
 

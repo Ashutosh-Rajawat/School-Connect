@@ -33,7 +33,7 @@ class Rest {
         dialog?.setCanceledOnTouchOutside(false)
 
         animationView = dialog?.findViewById(R.id.loading_bar)
-        animationView?.setAnimation(R.raw.loader)
+        animationView?.setAnimation(R.raw.school_loder)
         animationView?.playAnimation()
 
         val window = dialog?.window ?: return

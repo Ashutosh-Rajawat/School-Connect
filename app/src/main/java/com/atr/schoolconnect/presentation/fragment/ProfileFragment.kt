@@ -145,7 +145,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logoutUser() {
-        sharedPreferences.isLogin = false
+        sharedPreferences.clearSharedPreference()
         startActivity(Intent(requireActivity(), LoginActivity::class.java))
         requireActivity().finishAffinity()
 

@@ -64,12 +64,12 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
     /* ---------------- POSTS (pagination) ---------------- */
 
-    fun loadPosts(page: Int) {
+    fun loadPosts(page: Int,token : String) {
         viewModelScope.launch(Dispatchers.IO) {
             _responseState.value = ApiResponse.loading()
 
             try {
-                val response = repo.getPosts(page)
+                val response = repo.getPosts(page,token)
                 val json = JsonObject().apply {
                     addProperty("apiType", "posts")                // api name
                     add("response", Gson().toJsonTree(response)) // FULL response

@@ -1,14 +1,18 @@
 package com.atr.schoolconnect.presentation.adapter
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.atr.schoolconnect.databinding.ItemBannerBinding
 import com.atr.schoolconnect.domain.BannerModelData
+import com.atr.schoolconnect.presentation.utilities.PreferenceConnector
 import com.bumptech.glide.Glide
 
 class BannerAdapter(
-    private val bannerList: List<BannerModelData>
+    private val bannerList: List<BannerModelData>,
+    private val requireContext: Context
 ) : RecyclerView.Adapter<BannerAdapter.BannerViewHolder>() {
 
     class BannerViewHolder(val binding: ItemBannerBinding) :
@@ -21,7 +25,7 @@ class BannerAdapter(
 
     override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
         val banner = bannerList[position]
-        val url = "https://school.aapanorajasthan.com/upload/files/${banner.sliderImage}"
+        val url = PreferenceConnector(requireContext).baseUrl+"/"+banner.sliderImage
 
         val thumb = Glide.with(holder.itemView)
             .load(url)

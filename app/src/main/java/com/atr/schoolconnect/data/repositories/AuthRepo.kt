@@ -49,9 +49,9 @@ class AuthRepo(private val application: Application) {
         }
     }
 
-    suspend fun getPosts(page:Int): ApiResponse =
+    suspend fun getPosts(page:Int,token : String): ApiResponse =
         try {
-            ApiResponse.success(RestAdapter.restService.getPosts(page))
+            ApiResponse.success(RestAdapter.restService.getPosts(token,page))
         } catch (e: Exception) {
             handleApiError(e)
         }

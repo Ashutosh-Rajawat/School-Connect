@@ -94,7 +94,7 @@ class HomeFragment : Fragment(), ApiResponseListener {
                 ) {
                     isLoading = true
                     page += 1
-                    authViewModel?.loadPosts(page)
+                    authViewModel?.loadPosts(page,"Bearer ${sharedPreferences.authToken}")
                 }
             }
         })
@@ -104,7 +104,7 @@ class HomeFragment : Fragment(), ApiResponseListener {
     }
 
     private fun setupBanner() {
-        bannerAdapter = BannerAdapter(bannerList)
+        bannerAdapter = BannerAdapter(bannerList,requireContext())
         binding.bannerPager.adapter = bannerAdapter
     }
 
@@ -180,7 +180,7 @@ class HomeFragment : Fragment(), ApiResponseListener {
                     Log.i("bannerModel", "bannerModel.data: "+bannerModel.data)
                     bannerAdapter?.notifyDataSetChanged()
                     startAutoScroll()
-                    authViewModel?.loadPosts(page)
+                    authViewModel?.loadPosts(page,"Bearer ${sharedPreferences.authToken}")
                 }
 
             }

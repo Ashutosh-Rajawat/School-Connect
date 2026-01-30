@@ -6,7 +6,6 @@ data class PostModel(
 
     @SerializedName("status") var status: Int? = null,
     @SerializedName("message") var message: String? = null,
-    @SerializedName("base_url") var baseUrl: String? = null,
     @SerializedName("data") var data: MutableList<PostModelData> = mutableListOf(),
     @SerializedName("current_page") var currentPage: Int? = null
 
