@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.atr.schoolconnect.R
+import com.atr.schoolconnect.data.controller.Rest
 import com.atr.schoolconnect.data.viewModels.AuthViewModel
 import com.atr.schoolconnect.databinding.ActivityLoginBinding
 import com.atr.schoolconnect.domain.rest.ApiResponseListener
@@ -25,6 +26,7 @@ class LoginActivity : AppCompatActivity(), ApiResponseListener {
     private var apiResponseListener: ApiResponseListener? = null
 
     lateinit var sharedPreferences: PreferenceConnector
+    private lateinit var rest: Rest
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,12 +36,13 @@ class LoginActivity : AppCompatActivity(), ApiResponseListener {
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         sharedPreferences = PreferenceConnector(this)
         apiResponseListener = this
+        rest = Rest(this)
 
         // Collect StateFlow
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 authViewModel?.responseState?.collect { apiResponse ->
-                    apiResponse?.let { putResponse(it) }
+                    apiResponse?.let { putResponse(it, rest ) }
                 }
             }
         }
@@ -63,7 +66,7 @@ class LoginActivity : AppCompatActivity(), ApiResponseListener {
     }
 
     override fun onLoading() {
-        Log.i("onLoading", "onLoading: 1")
+        rest.showDialogue()
     }
 
     override fun onDataRender(jsonObject: JsonObject?) {

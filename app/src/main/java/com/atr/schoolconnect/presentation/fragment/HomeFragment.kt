@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.atr.schoolconnect.data.controller.Rest
 import com.atr.schoolconnect.data.viewModels.AuthViewModel
 import com.atr.schoolconnect.databinding.FragmentHomeBinding
 import com.atr.schoolconnect.domain.BannerModel
@@ -47,6 +48,9 @@ class HomeFragment : Fragment(), ApiResponseListener {
     private var bannerAdapter: BannerAdapter? = null
     private val bannerList = mutableListOf<BannerModelData>()
     private var bannerJob: Job? = null
+    private lateinit var rest: Rest
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,12 +61,13 @@ class HomeFragment : Fragment(), ApiResponseListener {
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         sharedPreferences = PreferenceConnector(requireActivity())
         apiResponseListener = this@HomeFragment
+        rest = Rest(requireContext())
 
         // Collect StateFlow
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 authViewModel?.responseState?.collect { apiResponse ->
-                    apiResponse?.let { putResponse(it) }
+                    apiResponse?.let { putResponse(it,rest) }
                 }
             }
         }
@@ -132,6 +137,7 @@ class HomeFragment : Fragment(), ApiResponseListener {
     }
 
     override fun onLoading() {
+        rest.showDialogue()
     }
 
     override fun onDataRender(jsonObject: JsonObject?) {
